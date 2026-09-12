@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic HTML Site</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --surface: #ffffff;
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --accent: #e0edff;
+        --border: #dbe3f0;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a { text-decoration: none; }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .hero {
+        padding: 88px 0 60px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 4vw, 4rem);
+        line-height: 1.1;
+        margin: 0 0 18px;
+      }
+
+      .lead {
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 650px;
+        margin-bottom: 28px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: var(--accent);
+        color: var(--primary-dark);
+      }
+
+      .hero-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 26px;
+        box-shadow: 0 20px 50px rgba(37, 99, 235, 0.08);
+      }
+
+      .mock-window {
+        background: #0f172a;
+        border-radius: 18px;
+        padding: 18px;
+        color: #dbeafe;
+      }
+
+      .mock-window .topbar {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .mock-window .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .dot.red { background: #f87171; }
+      .dot.yellow { background: #fbbf24; }
+      .dot.green { background: #34d399; }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.5rem;
+      }
+
+      section {
+        padding: 32px 0 18px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 26px;
+      }
+
+      .section-title h2 {
+        margin: 0 0 10px;
+        font-size: 2rem;
+      }
+
+      .section-title p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.04);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 24px 0 50px;
+      }
+
+      .feature-box {
+        background: var(--surface);
+        border-radius: 22px;
+        border: 1px solid var(--border);
+        padding: 28px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      li + li {
+        margin-top: 10px;
+      }
+
+      .contact {
+        text-align: center;
+        padding-bottom: 70px;
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border-radius: 24px;
+        padding: 40px 24px;
+      }
+
+      .contact-box p {
+        margin: 12px auto 0;
+        max-width: 640px;
+        color: rgba(255,255,255,0.85);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        background: rgba(255,255,255,0.7);
+        color: var(--muted);
+        text-align: center;
+        padding: 24px 0;
+      }
+
+      @media (max-width: 800px) {
+        .hero-grid,
+        .cards,
+        .feature-list {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          flex-direction: column;
+          justify-content: center;
+          padding: 16px 0;
+          gap: 10px;
+        }
+
+        .nav-links {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="brand">Bright Studio</div>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <h1>Build something great with a clean, simple site.</h1>
+            <p class="lead">
+              Bright Studio helps businesses launch polished online experiences with a modern design,
+              clear messaging, and a strong first impression.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+              <a class="btn btn-secondary" href="#services">Explore Services</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="mock-window">
+              <div class="topbar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+
+              <div>
+                <strong>Website Overview</strong>
+                <div class="stats">
+                  <div class="stat">
+                    <strong>120+</strong>
+                    Projects
+                  </div>
+                  <div class="stat">
+                    <strong>4.9/5</strong>
+                    Rating
+                  </div>
+                  <div class="stat">
+                    <strong>24/7</strong>
+                    Support
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>Why choose us</h2>
+            <p>We combine strategy, design, and clarity to help your brand stand out.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <h3>Simple Strategy</h3>
+              <p>We create focused plans that make your message easy to understand and action-oriented.</p>
+            </article>
+            <article class="card">
+              <h3>Modern Design</h3>
+              <p>Clean layouts, strong visuals, and mobile-friendly experiences build trust from the first click.</p>
+            </article>
+            <article class="card">
+              <h3>Reliable Support</h3>
+              <p>From launch to updates, we stay available to help your website grow with your business.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-title">
+            <h2>What we offer</h2>
+            <p>Everything needed for a polished online presence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="container feature-list">
+          <div class="feature-box">
+            <h3>Built for results</h3>
+            <ul>
+              <li>Responsive design that looks great on every screen size.</li>
+              <li>Fast-loading pages with clear user flow.</li>
+              <li>Clear calls to action that guide visitors.</li>
+              <li>Easy-to-update structure for future growth.</li>
+            </ul>
+          </div>
+
+          <div class="feature-box">
+            <h3>Our process</h3>
+            <ul>
+              <li>Discover your goals, audience, and message.</li>
+              <li>Design a clean layout that reflects your brand.</li>
+              <li>Launch and refine based on real feedback.</li>
+              <li>Maintain and improve as your business evolves.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="contact-box">
+            <h2>Ready to get started?</h2>
+            <p>
+              Let’s create a website that feels professional, welcoming, and built to help you grow.
+            </p>
+            <div class="cta-row" style="justify-content:center; margin-top:24px;">
+              <a class="btn btn-secondary" href="mailto:hello@brightstudio.example">hello@brightstudio.example</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 Bright Studio. All rights reserved.</div>
+    </footer>
+  </body>
+</html>
